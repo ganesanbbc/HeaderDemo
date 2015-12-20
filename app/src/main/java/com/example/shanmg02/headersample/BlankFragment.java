@@ -50,18 +50,18 @@ public class BlankFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         textview = (TextView) view.findViewById(R.id.position);
         textview.setText(String.valueOf(position));
-        relativeLayout = (RelativeLayout) view.findViewById(R.id.container);
-
-
-        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                System.out.println("sampel");
-                return true;
-            }
-
-        });
+//        relativeLayout = (RelativeLayout) view.findViewById(R.id.container);
+//
+//
+//        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
+//
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                System.out.println("sampel");
+//                return true;
+//            }
+//
+//        });
     }
 
 }
