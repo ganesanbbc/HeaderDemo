@@ -1,11 +1,13 @@
 package com.example.shanmg02.headersample;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -20,7 +22,8 @@ public class BlankFragment extends Fragment {
 
     private int position;
     private TextView textview;
-    private RelativeLayout relativeLayout;
+    private PageListener listener;
+    private AppBarLayout appBarLayout;
 
     public BlankFragment() {
     }
@@ -39,6 +42,14 @@ public class BlankFragment extends Fragment {
     }
 
 
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        listener = (PageListener) getActivity();
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,19 +60,17 @@ public class BlankFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         textview = (TextView) view.findViewById(R.id.position);
+        appBarLayout = (AppBarLayout) view.findViewById(R.id.applayout);
         textview.setText(String.valueOf(position));
-//        relativeLayout = (RelativeLayout) view.findViewById(R.id.container);
-//
-//
-//        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
-//
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                System.out.println("sampel");
-//                return true;
-//            }
-//
-//        });
+        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+             listener.onScrolled(verticalOffset);
+            }
+        });
+
     }
+
+
 
 }
