@@ -23,7 +23,6 @@ public class BlankFragment extends Fragment {
     private int position;
     private TextView textview;
     private PageListener listener;
-    private AppBarLayout appBarLayout;
 
     public BlankFragment() {
     }
@@ -40,7 +39,6 @@ public class BlankFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
 
 
     @Override
@@ -60,17 +58,10 @@ public class BlankFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         textview = (TextView) view.findViewById(R.id.position);
-        appBarLayout = (AppBarLayout) view.findViewById(R.id.applayout);
         textview.setText(String.valueOf(position));
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-             listener.onScrolled(verticalOffset);
-            }
-        });
-
     }
 
-
-
 }
+
+
+
